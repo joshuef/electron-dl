@@ -51,6 +51,7 @@ function registerListener(session, options, cb = () => {}) {
 
 		const errorMessage = options.errorMessage || 'The download of {filename} was interrupted';
 		const errorTitle = options.errorTitle || 'Download Error';
+		const showErrorDialog = options.showErrorDialog != null ? options.showErrorDialog : true; // default is true
 
 		if (!options.saveAs) {
 			item.setSavePath(filePath);
@@ -104,7 +105,9 @@ function registerListener(session, options, cb = () => {}) {
 				}
 			} else if (state === 'interrupted') {
 				const message = pupa(errorMessage, {filename: item.getFilename()});
-				dialog.showErrorBox(errorTitle, message);
+				if (showErrorDialog) {
+				   dialog.showErrorBox(errorTitle, message);
+				}
 				cb(new Error(message));
 			} else if (state === 'completed') {
 				if (process.platform === 'darwin') {

@@ -117,6 +117,13 @@ Default: `The download of {filename} was interrupted`
 
 Message of the error dialog. `{filename}` is replaced with the name of the actual file. Can be customized for localization.
 
+#### showErrorDialog
+
+Type: `boolean`<br>
+Default: `true`
+
+Show error dialog
+
 #### onStarted
 
 Type: `Function`
